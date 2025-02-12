@@ -41,6 +41,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vimrc'
 Plug 'sheerun/vim-polyglot'                             " Better syntax-highlighting for filetypes
 Plug 'jiangmiao/auto-pairs'
+Plug 'Exafunction/codeium.vim', { 'branch': 'main' }    " AI-autocompete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " Code autocomplete and snippets (:CocInstall coc-pyright /
                                                         " clangd / html / json / tsserver / sql-language-server)
 Plug 'dense-analysis/ale'                               " Code formatting
@@ -49,14 +50,21 @@ Plug 'dracula/vim'                                      " Colorscheme
 call plug#end()
 
 
-" turn off search highlight
+" Turn off search highlight
 nnoremap ,<space> :nohlsearch<CR>
 
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Colorscheme
 colorscheme dracula
 hi Normal guibg=NONE ctermbg=NONE
 hi MatchParen cterm=none ctermbg=blue ctermfg=green
 
-" highlighting
+" Highlighting
 let g:python_highlight_all = 1
 
 
