@@ -4,9 +4,10 @@ require("mason-lspconfig").setup {
 }
 
 local lspconfig = require("lspconfig")
+vim.g.coq_settings = { ['auto_start'] = true, ['display.icons.mode'] = 'none'  }
+local coq = require("coq")
 
-
-lspconfig.pyright.setup({
+lspconfig.pyright.setup(coq.lsp_ensure_capabilities({
   default_config = {
     cmd = { 'pyright-langserver', '--stdio' },
     filetypes = { 'python' },
@@ -40,13 +41,11 @@ lspconfig.pyright.setup({
     },
   },
   docs = {
-    description = [[
-https://github.com/microsoft/pyright
-
-`pyright`, a static type checker and language server for python
-]],
+    description = [[https://github.com/microsoft/pyright
+    `pyright`, a static type checker and language server for python
+    ]],
   },
-})
+}))
 
 local null_ls = require("null-ls")
 null_ls.setup({
