@@ -44,6 +44,9 @@ Plug 'windwp/nvim-autopairs'
 Plug('neoclide/coc.nvim', {['branch'] = 'release'})
 Plug('yaegassy/coc-ruff', {['do'] = 'yarn install --frozen-lockfile'})
 Plug('yaegassy/coc-black-formatter', {['do'] = 'yarn install --frozen-lockfile'})
+
+-- Linting and Formatting
+Plug 'dense-analysis/ale'
                                                         
 vim.call('plug#end')
 
@@ -86,3 +89,15 @@ keyset("n", "gd", "<Plug>(coc-definition)", {silent = true})
 keyset("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
 keyset("n", "gi", "<Plug>(coc-implementation)", {silent = true})
 keyset("n", "gr", "<Plug>(coc-references)", {silent = true})
+
+-- Ale
+vim.g.ale_linters = {
+    python = {"ruff", "mypy"},
+}
+
+vim.g.ale_fixers = {
+    __all = {"remove_trailing_lines", "trim_whitespace"},
+    python = { "ruff-format", "autoimport", "isort"}
+}
+
+vim.g.ale_fix_on_save = 1
